@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  php-apache:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: hello@123
+      MYSQL_DATABASE: onlineshop
+      MYSQL_USER: chandan
+      MYSQL_PASSWORD: hello@123
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d  # Mount database directory into container
+
